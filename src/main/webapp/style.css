@@ -2,25 +2,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap');
 
 body {
-	font-family: 'Open Sans', sans-serif;
-	font-size: 1em;
-	font-weight: 400;
+    font-family: 'Arial', sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
 }
 
 h1 {
-	color: #66bbff;
-}
-
-.botton1 {
-	text-decoration: none;
-	background-color: #66bbff;
-	padding: 5px 10px 5px 10px;
-	color: #ffffff;
-	font-size: 1.2em;
-	font-weight: 700;
+    color: #007bff;
+    text-align: center;
 }
 
 .img1 {
-	max-width: 300px;
-	max-height:450px;
+    display: block;
+    margin: 0 auto;
+}
+
+.botton1 {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #007bff;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.botton1:hover {
+    background-color: #0056b3;
 }
