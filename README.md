@@ -57,6 +57,11 @@ Certifique-se de que o servidor Tomcat está configurado corretamente.
 Inicie o servidor Tomcat no Eclipse.
 
 ## Acesse a aplicação no navegador:
-http://localhost:8080/agenda1/main
+[http://localhost:8080/agenda1/main](http://localhost:8080/agenda1/index.html)
 
 Agora, você deve ter o projeto de Agenda Web em execução localmente.
+
+# Imagem da página principal do projeto
+
+![image](https://github.com/felipexx71/projeto_agenda_web_jsp/assets/105807936/d2d24a35-19e5-41d3-8bc5-521b74fa9db0)
+
