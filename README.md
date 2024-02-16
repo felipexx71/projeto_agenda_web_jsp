@@ -31,12 +31,12 @@ CREATE TABLE contatos (
 
 Crie a tabela de acordo com os atributos das classes dentro do pacote model.
 
-## Configuração do Projeto no Eclipse
-
 ### BASH
 Clone o repositório:
 
 git clone https://github.com/felipexx71/projeto_agenda_web_jsp.git
+
+## Configuração do Projeto no Eclipse
 
 Abra o Eclipse e importe o projeto:
 
