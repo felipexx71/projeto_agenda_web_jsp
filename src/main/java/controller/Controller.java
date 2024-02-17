@@ -38,6 +38,9 @@ public class Controller extends HttpServlet {
 	protected void doGetListContacts(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.sendRedirect("agenda.jsp");
+<<<<<<< HEAD
 		dao.testeConexao();
+=======
+>>>>>>> main
 	}
 }
