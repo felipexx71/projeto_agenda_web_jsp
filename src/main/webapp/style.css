@@ -1,34 +1,65 @@
 @charset "UTF-8";
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap');
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap')
+	;
 
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f2f2f2;
-    margin: 0;
+	font-family: 'Arial', sans-serif;
+	background-color: #f2f2f2;
+	margin: 0;
 }
 
 h1 {
-    color: #007bff;
-    text-align: center;
+	color: #007bff;
+	text-align: center;
 }
 
 .img1 {
-    display: block;
-    margin: 0 auto;
+	display: block;
+	margin: 0 auto;
 }
 
 .botton1 {
-    display: block;
-    margin: 20px auto;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    color: #fff;
-    background-color: #007bff;
-    border-radius: 5px;
-    font-size: 18px;
+	display: block;
+	margin: 20px auto;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	color: #fff;
+	background-color: #007bff;
+	border-radius: 5px;
+	font-size: 18px;
 }
 
 .botton1:hover {
-    background-color: #0056b3;
+	background-color: #0056b3;
+}
+
+.form1 {
+	width: 300px;
+	margin: 20px auto; /* Centraliza a tabela na horizontal */
+	border-collapse: collapse;
+}
+
+.form1 tr {
+	text-align: center; /* Centraliza o texto nas células */
+}
+
+.form1 td {
+	padding: 10px;
+}
+
+.form1 input {
+	width: 100%;
+	padding: 8px;
+	box-sizing: border-box;
+	margin-bottom: 10px;
+	text-align: center;
+	/* Centraliza o texto dentro dos campos de entrada */
+}
+
+/* Estilo adicional para realçar o primeiro input */
+.form1 input[name="nome"] {
+	font-weight: bold;
 }
