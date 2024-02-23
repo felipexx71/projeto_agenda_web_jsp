@@ -7,13 +7,8 @@ import java.sql.DriverManager;
 public class DAO {
 	private String driver = "com.mysql.cj.jdbc.Driver";
 	private String url = "jdbc:mysql://localhost:3306/agenda?useTimezone=true&serverTimezone=UTC";
-<<<<<<< HEAD
 	private String user = "novo_usuario";
 	private String password = "sua_senha";
-=======
-	private String user = "felipe";
-	private String password = "071203";
->>>>>>> main
 
 	private Connection conectar() {
 		Connection con = null;
@@ -30,6 +25,6 @@ public class DAO {
 	}
 
 	public void testeConexao() {
-		Connection con = conectar();
+		conectar();
 	}
 }
