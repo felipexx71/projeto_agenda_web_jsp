@@ -46,7 +46,11 @@ public class Controller extends HttpServlet {
 	protected void newContact(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		jb.setNome(request.getParameter("nome"));
-		jb.setNome(request.getParameter("telefone"));
-		jb.setNome(request.getParameter("email"));
+		jb.setTelefone(request.getParameter("telefone"));
+		jb.setEmail(request.getParameter("email"));
+		
+		dao.insertContact(jb);
+		
+		response.sendRedirect("main");
 	}
 }
