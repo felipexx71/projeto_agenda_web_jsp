@@ -1,5 +1,4 @@
 @charset "UTF-8";
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap');
 
 body {
 	font-family: 'Arial', sans-serif;
@@ -35,12 +34,12 @@ h1 {
 
 .form1 {
 	width: 300px;
-	margin: 20px auto; 
+	margin: 20px auto;
 	border-collapse: collapse;
 }
 
 .form1 tr {
-	text-align: center; 
+	text-align: center;
 }
 
 .form1 td {
@@ -57,4 +56,24 @@ h1 {
 
 .form1 input[name="nome"] {
 	font-weight: bold;
+}
+
+#table1 {
+	margin-top: 30px;
+	border-collapse: collapse;
+	width: 80%; 
+    margin: 0 auto;
+}
+
+#table1 th {
+	border: 1px solid #ddd;
+	background-color: #66bbff;
+	padding: 10px;
+	text-align: left;
+	color: fff;
+}
+
+#table1 td {
+	border: 1px solid #ddd;
+	padding: 10px;
 }

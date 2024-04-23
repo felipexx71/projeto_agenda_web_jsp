@@ -1,7 +1,9 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,7 +17,7 @@ import model.JavaBeans;
 public class Controller extends HttpServlet {
 	DAO dao = new DAO();
 	JavaBeans jb = new JavaBeans();
-	
+
 	private static final long serialVersionUID = 1L;
 
 	public Controller() {
@@ -39,8 +41,11 @@ public class Controller extends HttpServlet {
 	// list contacts
 	protected void doGetListContacts(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.sendRedirect("agenda.jsp");
-		dao.testeConexao();
+		ArrayList<JavaBeans> lista = dao.listContacts();
+
+		request.setAttribute("contatos", lista);
+		RequestDispatcher rd = request.getRequestDispatcher("agenda.jsp");
+		rd.forward(request, response);
 	}
 
 	protected void newContact(HttpServletRequest request, HttpServletResponse response)
@@ -48,9 +53,9 @@ public class Controller extends HttpServlet {
 		jb.setNome(request.getParameter("nome"));
 		jb.setTelefone(request.getParameter("telefone"));
 		jb.setEmail(request.getParameter("email"));
-		
+
 		dao.insertContact(jb);
-		
+
 		response.sendRedirect("main");
 	}
 }
