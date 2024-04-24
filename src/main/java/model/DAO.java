@@ -77,4 +77,50 @@ public class DAO {
 		}
 
 	}
+	// crud update
+
+	// selecionar contato
+
+	public void selectContact(JavaBeans jb) {
+		String read2 = "select * from contatos where id = ?";
+		
+		try {
+			Connection con = conectar();
+			PreparedStatement pst = con.prepareStatement(read2);
+			
+			pst.setString(1, jb.getIdcon());
+			ResultSet rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				// setar variaveis no JavaBeans
+				jb.setIdcon(rs.getString(1));
+				jb.setNome(rs.getString(2));
+				jb.setTelefone(rs.getString(3));
+				jb.setEmail(rs.getString(4));
+			}
+			con.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+	
+	// editar contato
+	
+	public void editContact(JavaBeans jb) {
+		String update = "update contatos set nome=?,fone=?,email=? where id=?";
+		try {
+			Connection con = conectar();
+			PreparedStatement pst = con.prepareStatement(update);
+			pst.setString(1, jb.getNome());
+			pst.setString(2, jb.getTelefone());
+			pst.setString(3, jb.getEmail());
+			pst.setString(4, jb.getIdcon());
+			pst.executeUpdate();
+			con.close();
+			
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		
+	}
 }
