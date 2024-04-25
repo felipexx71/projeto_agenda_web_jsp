@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.DAO;
 import model.JavaBeans;
 
-@WebServlet(urlPatterns = { "/Controller", "/main", "/insert", "/select", "/update" })
+@WebServlet(urlPatterns = { "/Controller", "/main", "/insert", "/select", "/update", "/delete" })
 public class Controller extends HttpServlet {
 	DAO dao = new DAO();
 	JavaBeans jb = new JavaBeans();
@@ -27,6 +27,7 @@ public class Controller extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String action = request.getServletPath();
+		System.out.println(action);
 
 		if (action.equals("/main")) {
 			doGetListContacts(request, response);
@@ -36,6 +37,8 @@ public class Controller extends HttpServlet {
 			listContact(request, response);
 		} else if (action.equals("/update")) {
 			editContact(request, response);
+		} else if (action.equals("/delete")) {
+			deleteContact(request, response);
 		} else {
 			response.sendRedirect("index.html");
 		}
@@ -89,16 +92,30 @@ public class Controller extends HttpServlet {
 		rd.forward(request, response);
 
 	}
+
 	protected void editContact(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// setar variaveis javabeans
-		
+
 		jb.setIdcon(request.getParameter("idcon"));
 		jb.setNome(request.getParameter("nome"));
 		jb.setTelefone(request.getParameter("telefone"));
 		jb.setEmail(request.getParameter("email"));
-		
+
 		dao.editContact(jb);
 		response.sendRedirect("main");
+	}
+
+	protected void deleteContact(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// resgata variavel idcon
+		String idcon = request.getParameter("idcon");
+		// testa variavel
+		System.out.println(idcon);
+		// seta variavel em javabeans
+		jb.setIdcon(idcon);
+		dao.deleteContact(jb);
+		response.sendRedirect("main");
+
 	}
 }

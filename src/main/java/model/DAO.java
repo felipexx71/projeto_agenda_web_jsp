@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import javax.websocket.SendResult;
+
 //modulo de conexao
 public class DAO {
 	private String driver = "com.mysql.cj.jdbc.Driver";
@@ -122,5 +124,23 @@ public class DAO {
 			System.out.println(e);
 		}
 		
+	}
+	
+	// deletar contato
+	
+	public void deleteContact(JavaBeans jb) {
+		String delete = "delete from contatos where id=?";
+		
+		try {
+			Connection con = conectar();
+			PreparedStatement pst = con.prepareStatement(delete);
+			
+			pst.setString(1, jb.getIdcon());
+			pst.executeUpdate();
+			con.close();
+			
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 	}
 }

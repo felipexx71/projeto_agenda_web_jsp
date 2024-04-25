@@ -28,6 +28,18 @@ h1 {
 	font-size: 18px;
 }
 
+.botton2 {
+	display: block;
+	margin: 20px auto;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	color: #fff;
+	background-color: #D51213;
+	border-radius: 5px;
+	font-size: 18px;
+}
+
 .botton1:hover {
 	background-color: #0056b3;
 }
