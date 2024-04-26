@@ -49,5 +49,6 @@ ArrayList<JavaBeans> lista = (ArrayList<JavaBeans>) request.getAttribute("contat
 	</table>
 	<script src="scripts/confirmator.js"></script>
 	<a href="New.html" class="botton1">Novo contato</a>
+	<a href="report" class="botton2">Relatório</a>
 </body>
 </html>

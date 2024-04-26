@@ -10,10 +10,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+
 import model.DAO;
 import model.JavaBeans;
 
-@WebServlet(urlPatterns = { "/Controller", "/main", "/insert", "/select", "/update", "/delete" })
+@WebServlet(urlPatterns = { "/Controller", "/main", "/insert", "/select", "/update", "/delete", "/report" })
 public class Controller extends HttpServlet {
 	DAO dao = new DAO();
 	JavaBeans jb = new JavaBeans();
@@ -39,6 +45,8 @@ public class Controller extends HttpServlet {
 			editContact(request, response);
 		} else if (action.equals("/delete")) {
 			deleteContact(request, response);
+		} else if (action.equals("/report")) {
+			reportContact(request, response);
 		} else {
 			response.sendRedirect("index.html");
 		}
@@ -117,5 +125,44 @@ public class Controller extends HttpServlet {
 		dao.deleteContact(jb);
 		response.sendRedirect("main");
 
+	}
+
+	protected void reportContact(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		Document doc = new Document();
+		
+		try {
+			// seta o tipo de arquivo
+			response.setContentType("application/pdf");
+			// seta o nome do arquivo
+			response.addHeader("Content-Disposition", "inline; filename=" + "contatos.pdf");
+			// cria o arquivo
+			PdfWriter.getInstance(doc, response.getOutputStream());
+			// abre o arquivo
+			doc.open();
+			// add um paragrafo
+			doc.add(new Paragraph("Lista de contatos: "));
+			doc.add(new Paragraph("  "));
+			// cria uma tabela com 3 colunas
+			PdfPTable table = new PdfPTable(3);
+			PdfPCell col1 = new PdfPCell(new Paragraph("Nome"));
+			PdfPCell col2 = new PdfPCell(new Paragraph("Telefone"));
+			PdfPCell col3 = new PdfPCell(new Paragraph("Email"));
+			table.addCell(col1);
+			table.addCell(col2);
+			table.addCell(col3);
+			
+			ArrayList<JavaBeans> list = dao.listContacts();
+			for (int i = 0;i < list.size(); i++) {
+				table.addCell(list.get(i).getNome());
+				table.addCell(list.get(i).getTelefone());
+				table.addCell(list.get(i).getEmail());
+			}
+			doc.add(table);
+			doc.close();
+		} catch (Exception e) {
+			System.out.println(e);
+			doc.close();
+		}
 	}
 }

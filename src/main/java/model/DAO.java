@@ -54,7 +54,7 @@ public class DAO {
 	}
 
 	public ArrayList<JavaBeans> listContacts() {
-		String read = "select * from contatos order by nome";
+		String read = "select * from contatos order by id";
 		ArrayList<JavaBeans> contatos = new ArrayList<JavaBeans>();
 
 		try {
