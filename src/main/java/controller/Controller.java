@@ -19,17 +19,37 @@ import com.itextpdf.text.pdf.PdfWriter;
 import model.DAO;
 import model.JavaBeans;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Controller.
+ */
 @WebServlet(urlPatterns = { "/Controller", "/main", "/insert", "/select", "/update", "/delete", "/report" })
 public class Controller extends HttpServlet {
+	
+	/** The dao. */
 	DAO dao = new DAO();
+	
+	/** The jb. */
 	JavaBeans jb = new JavaBeans();
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Instantiates a new controller.
+	 */
 	public Controller() {
 		super();
 	}
 
+	/**
+	 * Do get.
+	 *
+	 * @param request the request
+	 * @param response the response
+	 * @throws ServletException the servlet exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String action = request.getServletPath();
@@ -51,6 +71,14 @@ public class Controller extends HttpServlet {
 
 	}
 
+	/**
+	 * Do get list contacts.
+	 *
+	 * @param request the request
+	 * @param response the response
+	 * @throws ServletException the servlet exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	protected void doGetListContacts(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ArrayList<JavaBeans> lista = dao.listContacts();
@@ -60,6 +88,14 @@ public class Controller extends HttpServlet {
 		rd.forward(request, response);
 	}
 
+	/**
+	 * New contact.
+	 *
+	 * @param request the request
+	 * @param response the response
+	 * @throws ServletException the servlet exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	protected void newContact(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		jb.setNome(request.getParameter("nome"));
@@ -71,6 +107,14 @@ public class Controller extends HttpServlet {
 		response.sendRedirect("main");
 	}
 
+	/**
+	 * List contact.
+	 *
+	 * @param request the request
+	 * @param response the response
+	 * @throws ServletException the servlet exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	protected void listContact(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		jb.setIdcon(request.getParameter("idcon"));
@@ -86,6 +130,14 @@ public class Controller extends HttpServlet {
 
 	}
 
+	/**
+	 * Edits the contact.
+	 *
+	 * @param request the request
+	 * @param response the response
+	 * @throws ServletException the servlet exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	protected void editContact(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		jb.setIdcon(request.getParameter("idcon"));
@@ -97,6 +149,14 @@ public class Controller extends HttpServlet {
 		response.sendRedirect("main");
 	}
 
+	/**
+	 * Delete contact.
+	 *
+	 * @param request the request
+	 * @param response the response
+	 * @throws ServletException the servlet exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	protected void deleteContact(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		jb.setIdcon(request.getParameter("idcon"));
@@ -105,6 +165,14 @@ public class Controller extends HttpServlet {
 
 	}
 
+	/**
+	 * Report contact.
+	 *
+	 * @param request the request
+	 * @param response the response
+	 * @throws ServletException the servlet exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	protected void reportContact(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Document doc = new Document();

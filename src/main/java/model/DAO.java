@@ -8,14 +8,32 @@ import java.util.ArrayList;
 
 import javax.websocket.SendResult;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class DAO.
+ */
 public class DAO {
+
+	/** The driver. */
 	private String driver = "com.mysql.cj.jdbc.Driver";
+
+	/** The url. */
 	private String url = "jdbc:mysql://localhost:3306/agenda?useTimezone=true&serverTimezone=UTC";
+
+	/** The user. */
 	private String user = "novo_usuario";
+
+	/** The password. */
 	private String password = "sua_senha";
 
+	/** The jb. */
 	JavaBeans jb = new JavaBeans();
 
+	/**
+	 * Conectar.
+	 *
+	 * @return the connection
+	 */
 	private Connection conectar() {
 		Connection con = null;
 
@@ -30,6 +48,11 @@ public class DAO {
 		}
 	}
 
+	/**
+	 * Insert contact.
+	 *
+	 * @param contact the contact
+	 */
 	public void insertContact(JavaBeans contact) {
 		String create = "insert into contatos values (default,?,?,?)";
 
@@ -48,6 +71,11 @@ public class DAO {
 
 	}
 
+	/**
+	 * List contacts.
+	 *
+	 * @return the array list
+	 */
 	public ArrayList<JavaBeans> listContacts() {
 		String read = "select * from contatos order by id";
 		ArrayList<JavaBeans> contatos = new ArrayList<JavaBeans>();
@@ -74,6 +102,11 @@ public class DAO {
 
 	}
 
+	/**
+	 * Select contact.
+	 *
+	 * @param jb the jb
+	 */
 	public void selectContact(JavaBeans jb) {
 		String read = "select * from contatos where id = ?";
 
@@ -96,6 +129,11 @@ public class DAO {
 		}
 	}
 
+	/**
+	 * Edits the contact.
+	 *
+	 * @param jb the jb
+	 */
 	public void editContact(JavaBeans jb) {
 		String update = "update contatos set nome=?,fone=?,email=? where id=?";
 		try {
@@ -114,6 +152,11 @@ public class DAO {
 
 	}
 
+	/**
+	 * Delete contact.
+	 *
+	 * @param jb the jb
+	 */
 	public void deleteContact(JavaBeans jb) {
 		String delete = "delete from contatos where id=?";
 
