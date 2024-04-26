@@ -41,10 +41,7 @@ ArrayList<JavaBeans> lista = (ArrayList<JavaBeans>) request.getAttribute("contat
 					href="javascript: confirmar(<%=lista.get(i).getIdcon()%>)"
 					class="botton2">Excluir</a></td>
 			</tr>
-
-			<%
-			}
-			%>
+			<%}%>
 		</tbody>
 	</table>
 	<script src="scripts/confirmator.js"></script>

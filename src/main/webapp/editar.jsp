@@ -13,16 +13,20 @@
 	<form name="frmContact" action="update">
 		<table class="form1">
 			<tr>
-				<td><input type="text" name="idcon" id="idcon" readonly value="<%out.print(request.getAttribute("idcon"));%>"></td>
+				<td><input type="text" name="idcon" id="idcon" readonly
+					value="<%out.print(request.getAttribute("idcon"));%>"></td>
 			</tr>
 			<tr>
-				<td><input type="text" name="nome" value="<%out.print(request.getAttribute("nome"));%>"></td>
+				<td><input type="text" name="nome"
+					value="<%out.print(request.getAttribute("nome"));%>"></td>
 			</tr>
 			<tr>
-				<td><input type="text" name="telefone" value="<%out.print(request.getAttribute("telefone"));%>"></td>
+				<td><input type="text" name="telefone"
+					value="<%out.print(request.getAttribute("telefone"));%>"></td>
 			</tr>
 			<tr>
-				<td><input type="text" name="email" value="<%out.print(request.getAttribute("email"));%>"></td>
+				<td><input type="text" name="email"
+					value="<%out.print(request.getAttribute("email"));%>"></td>
 			</tr>
 		</table>
 		<input type="button" value="Salvar" class="botton1"

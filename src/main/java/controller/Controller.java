@@ -33,8 +33,6 @@ public class Controller extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String action = request.getServletPath();
-		System.out.println(action);
-
 		if (action.equals("/main")) {
 			doGetListContacts(request, response);
 		} else if (action.equals("/insert")) {
@@ -53,7 +51,6 @@ public class Controller extends HttpServlet {
 
 	}
 
-	// list contacts
 	protected void doGetListContacts(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ArrayList<JavaBeans> lista = dao.listContacts();
@@ -76,20 +73,8 @@ public class Controller extends HttpServlet {
 
 	protected void listContact(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// resgatar id
-		String idcon = request.getParameter("idcon");
-		// setar id
-		jb.setIdcon(idcon);
-		// selecionar contato
+		jb.setIdcon(request.getParameter("idcon"));
 		dao.selectContact(jb);
-		// teste de recebimento
-
-		/*
-		 * System.out.println(jb.getIdcon()); System.out.println(jb.getNome());
-		 * System.out.println(jb.getTelefone()); System.out.println(jb.getEmail());
-		 */
-
-		// listar o conteudo do contato com dados do javabeans
 
 		request.setAttribute("idcon", jb.getIdcon());
 		request.setAttribute("nome", jb.getNome());
@@ -103,8 +88,6 @@ public class Controller extends HttpServlet {
 
 	protected void editContact(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// setar variaveis javabeans
-
 		jb.setIdcon(request.getParameter("idcon"));
 		jb.setNome(request.getParameter("nome"));
 		jb.setTelefone(request.getParameter("telefone"));
@@ -116,12 +99,7 @@ public class Controller extends HttpServlet {
 
 	protected void deleteContact(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// resgata variavel idcon
-		String idcon = request.getParameter("idcon");
-		// testa variavel
-		System.out.println(idcon);
-		// seta variavel em javabeans
-		jb.setIdcon(idcon);
+		jb.setIdcon(request.getParameter("idcon"));
 		dao.deleteContact(jb);
 		response.sendRedirect("main");
 
@@ -130,30 +108,29 @@ public class Controller extends HttpServlet {
 	protected void reportContact(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Document doc = new Document();
-		
+
 		try {
-			// seta o tipo de arquivo
 			response.setContentType("application/pdf");
-			// seta o nome do arquivo
 			response.addHeader("Content-Disposition", "inline; filename=" + "contatos.pdf");
-			// cria o arquivo
 			PdfWriter.getInstance(doc, response.getOutputStream());
-			// abre o arquivo
+
 			doc.open();
-			// add um paragrafo
+
 			doc.add(new Paragraph("Lista de contatos: "));
 			doc.add(new Paragraph("  "));
-			// cria uma tabela com 3 colunas
+
 			PdfPTable table = new PdfPTable(3);
+
 			PdfPCell col1 = new PdfPCell(new Paragraph("Nome"));
 			PdfPCell col2 = new PdfPCell(new Paragraph("Telefone"));
 			PdfPCell col3 = new PdfPCell(new Paragraph("Email"));
+
 			table.addCell(col1);
 			table.addCell(col2);
 			table.addCell(col3);
-			
+
 			ArrayList<JavaBeans> list = dao.listContacts();
-			for (int i = 0;i < list.size(); i++) {
+			for (int i = 0; i < list.size(); i++) {
 				table.addCell(list.get(i).getNome());
 				table.addCell(list.get(i).getTelefone());
 				table.addCell(list.get(i).getEmail());

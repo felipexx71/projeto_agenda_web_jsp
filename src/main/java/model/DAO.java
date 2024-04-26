@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import javax.websocket.SendResult;
 
-//modulo de conexao
 public class DAO {
 	private String driver = "com.mysql.cj.jdbc.Driver";
 	private String url = "jdbc:mysql://localhost:3306/agenda?useTimezone=true&serverTimezone=UTC";
@@ -29,10 +28,6 @@ public class DAO {
 			System.out.println(e.getMessage());
 			return null;
 		}
-	}
-
-	public void testeConexao() {
-		conectar();
 	}
 
 	public void insertContact(JavaBeans contact) {
@@ -75,26 +70,21 @@ public class DAO {
 		} catch (Exception e) {
 			System.out.println(e);
 			return null;
-			// TODO: handle exception
 		}
 
 	}
-	// crud update
-
-	// selecionar contato
 
 	public void selectContact(JavaBeans jb) {
-		String read2 = "select * from contatos where id = ?";
-		
+		String read = "select * from contatos where id = ?";
+
 		try {
 			Connection con = conectar();
-			PreparedStatement pst = con.prepareStatement(read2);
-			
+			PreparedStatement pst = con.prepareStatement(read);
+
 			pst.setString(1, jb.getIdcon());
 			ResultSet rs = pst.executeQuery();
-			
-			while(rs.next()) {
-				// setar variaveis no JavaBeans
+
+			while (rs.next()) {
 				jb.setIdcon(rs.getString(1));
 				jb.setNome(rs.getString(2));
 				jb.setTelefone(rs.getString(3));
@@ -105,9 +95,7 @@ public class DAO {
 			System.out.println(e);
 		}
 	}
-	
-	// editar contato
-	
+
 	public void editContact(JavaBeans jb) {
 		String update = "update contatos set nome=?,fone=?,email=? where id=?";
 		try {
@@ -119,26 +107,24 @@ public class DAO {
 			pst.setString(4, jb.getIdcon());
 			pst.executeUpdate();
 			con.close();
-			
+
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-		
+
 	}
-	
-	// deletar contato
-	
+
 	public void deleteContact(JavaBeans jb) {
 		String delete = "delete from contatos where id=?";
-		
+
 		try {
 			Connection con = conectar();
 			PreparedStatement pst = con.prepareStatement(delete);
-			
+
 			pst.setString(1, jb.getIdcon());
 			pst.executeUpdate();
 			con.close();
-			
+
 		} catch (Exception e) {
 			System.out.println(e);
 		}
